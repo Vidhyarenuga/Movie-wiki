@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+.body {
+  display: flex;
+
+  height: 100vh;
+  width: 100vw;
+}
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: "Roboto Condensed";
+  background-image:linear-gradient(#24C6DC,#514A9D);
+  
+}
+#header1 input[type=text]
+{
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  width: 100%;
+}
+
+.headbutton {
+  padding: 7px 20px;
+  font-size: 16px;
+  color: #fff;
+  background: black;
+  margin-top: 15px;
+}
+
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-image: linear-gradient(#0F2027,#203A43,#2C5364);
+  color: #fff;
+}
+
+img {
+  width: 200px;
+
+  cursor: pointer;
+}
+
+.plot-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+  font-size: 18px;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.movieWrapper {
+  display: flex;
+  margin: 30px;
+  flex-direction: column;
+  width: 200px;
+}
+
+.assignment-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(#8A2387,#E94057,#F27121)
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  padding: 30px;
+  /* margin: 0 auto; */
+  -webkit-box-shadow: 0px 5px 10px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 10px 4px rgba(0, 0, 0, 0.2);
+  background-color: antiquewhite;
+ 
+}
+
+.right-side {
+  margin-left: 20px;
+}
+
+.right-side #title {
+  font-weight: 700px;
+  font-size: 24px;
+}
+
+.light-font {
+  font-size: 16px;
+  color: #808080;
+  display: flex;
+  flex-direction: row;
+}
+
+.right-side #content {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.bar {
+  margin: 0 10px;
+}
+
+#genre {
+  padding: 6px 10px;
+  background: #fcfc9c;
+  color: #222;
+  display: inline-block;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.heading {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.heading #rating {
+  margin-left: 5px;
+  font-weight: 400;
+}

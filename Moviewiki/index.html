@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Wiki</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto+Condensed&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="home">
+          <div style="font-size: 56px; color: antiquewhite ">
+            <span> Movie </span> <span style="font-weight: 800;"> Wiki</span>
+          </div>
+          
+      <div class="right">
+        <div id="header1" class="search" align="center">
+          <input
+            type="text"
+            class="tftextinput"
+            id="q"
+            size="91"
+            placeholder="Search for Movies"
+            height="20"
+            maxlength="220"
+            autocomplete="off"
+          />
+          <input
+            type="submit"
+            value="Search"
+            class="headbutton"
+            onclick="findmovie()"
+            style="cursor: pointer;"
+          />
+        </div>
+      </div>
+    </div>
+    
+    <div id="main" class="disp"></div>
+    <div style="display: none; align-items: center; justify-content: center;" id="loadmore-button"><button id="loadMore" style="background: #4b4a45; padding: 8px 20px; font-size: 16px; outline: none; border: none; border-radius: 8px; margin: 20px; color:white; cursor: pointer;" onclick="loadMore()" > Show More Files </button></div>
+
+  </body>
+</html>
+<script>
+
+
+    var page = 1;
+    var allMovies = [];
+  function genre(val) {
+    document.getElementById("loadmore-button").style.display = "none";
+    document.getElementsByClassName("home")[0].style.display = "none";
+    var x = val;
+    console.log(x);
+    
+    fetch('http://www.omdbapi.com/?i=tt3896198&apikey=f689041b&s='+x)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("main").innerHTML = " ";
+        data.Search.forEach(function(Search) {
+          var div = document.createElement("div");
+          div.classList.add("movieWrapper");
+          var title = document.createElement("p");
+          title.innerHTML = Search.Title;
+          
+
+          var img = document.createElement("img");
+          img.src = Search.Poster;
+          img.value = Search.imdbID;
+          div.appendChild(img);
+          div.appendChild(title);
+          
+
+          img.addEventListener(
+            "click",
+            function(el) {
+              imageinfo(el, img.value);
+            },
+            false
+          );
+          document.getElementById("main").appendChild(div);
+          function imageinfo(el, value) {
+         window.location.href = "desc.html#id=" + value;
+          }
+        });
+      })
+      .catch(error => console.error(error));
+  }
+ function loadMore()
+ {
+   findmovie();
+
+
+ }
+  function findmovie() {
+    document.getElementById("loadmore-button").style.display = "flex";
+    document.getElementsByClassName("home")[0].style.display = "none";
+    
+    var x = document.getElementById("q").value;
+    console.log(x);
+    
+    fetch('http://www.omdbapi.com/?i=tt3896198&apikey=f689041b&s='+x+'&page='+page)
+      .then(response => response.json())
+      .then(data => {
+        allMovies = [...allMovies, ...data.Search];
+        data.Search.forEach(function(Search) {
+          var div = document.createElement("div");
+          div.classList.add("movieWrapper");
+          var title = document.createElement("p");
+          title.innerHTML = Search.Title;
+          
+          div.appendChild(title);
+          var img = document.createElement("img");
+          img.src = Search.Poster;
+          img.value = Search.imdbID;
+          
+          div.appendChild(img);
+          div.appendChild(title);   
+
+          img.addEventListener(
+            "click",
+            function(el) {
+              imageinfo(el, img.value);
+            },
+            false
+          );
+          document.getElementById("main").appendChild(div);
+          function imageinfo(el, value) {
+          window.location.href = "desc.html#id=" + value;
+          }
+        });
+        if(allMovies.length != data.totalResults){
+            page++;
+        }
+      })
+      .catch(error => console.error(error));
+  }
+</script>
+<script src="script.js"></script>
